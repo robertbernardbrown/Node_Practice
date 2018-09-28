@@ -1,0 +1,40 @@
+var fs = require('fs');
+var readline = require('readline');
+var stream = require('stream');
+
+var instream = fs.createReadStream('indiv18/itcont.txt');
+var outstream = new stream;
+var rl = readline.createInterface(instream, outstream);
+
+fortamusFunctions();
+
+function fortamusFunctions (){
+    let i = 0;
+
+    findPeople(rl);
+    countLines(rl);
+
+    function findPeople (rl) {
+        rl.on('line', function(line) {
+            if ( i === 432 || i === 43243){
+                let readThisLine = line.split("|");
+                console.log(readThisLine[7]);
+            }
+            i++;
+        });
+    }
+    
+    function countLines (rl){
+        rl.on('close', function(){
+            console.log(i);
+        })
+    }
+
+}
+
+/*
+1: 12,865,059
+2: MILESKI, JOHN A; CESTELLO, LOUIS R
+3: 
+
+*/
